@@ -29,7 +29,7 @@ def extract_audio(video_path, output_wav):
 def transcribe_audio(audio_path, start_time, model_size="small", compute_type="int8"):
     model = WhisperModel(model_size, compute_type=compute_type)
     batched_model = BatchedInferencePipeline(model=model)
-    segments, info = batched_model.transcribe(audio_path, batch_size=32)
+    segments, info = batched_model.transcribe(audio_path, batch_size=16)
     print(f"Detected language: {info.language}")
     total_duration = get_audio_duration(audio_path)
     txt_filename = Path(audio_path).with_suffix(".txt")
@@ -39,7 +39,6 @@ def transcribe_audio(audio_path, start_time, model_size="small", compute_type="i
             for segment in segments:
                 start = datetime.datetime.fromtimestamp(start_time + segment.start).strftime("%Y-%m-%d %H:%M:%S") 
                 end = datetime.datetime.fromtimestamp(start_time + segment.end).strftime("%Y-%m-%d %H:%M:%S") 
-                print(f"[{start} -> {end}] {segment.text}")
                 txt.write(segment.text)
                 srt.write(f"[{start} -> {end}] {segment.text}\n")
                 pbar.update(segment.end - pbar.n)

@@ -10,7 +10,7 @@ This Python script automates the process of transcribing audio from video files 
 brew install ffmpeg
 git clone https://github.com/facha/video2text.git
 cd video2text 
-uv run vid2text.py  ~/Desktop/Screen\ Recording\ 2025-04-11\ at\ 17.11.40.mov 
+uv run vid2text.py /tmp/video.mp4
 ```
 
 ![Sample Output](example.png "sample output")

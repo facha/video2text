@@ -1,7 +1,7 @@
 [project]
 name = "video2text"
 version = "0.1.0"
-description = "Add your description here"
+description = "Video Transcriber using faster-whisper"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
